@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | In order to keep the framework as light-weight as possible only the
 | absolute minimal resources are loaded by default. For example,
-| the database is not connected to automatically since no assumption
+	| the database is not connected to automatically since no assumption
 | is made regarding whether you intend to use it.  This file lets
 | you globally define which systems you would like loaded with every
 | request.
@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('form_validation');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url','form');
 
 /*
 | -------------------------------------------------------------------
