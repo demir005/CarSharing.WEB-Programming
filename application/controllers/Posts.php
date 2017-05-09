@@ -3,10 +3,17 @@
 
 class Posts extends CI_Controller{
 	
+	function __construct(){
+		parent::__construct();
+		$this->load->database();
+		$this->load->model('Posts_model');
+	}
+	
 	public function index($page='home'){
 		
-		$data['title']= 'Sve voznje';
+		$data['mjesto_polaska']= 'Sve voznje';
 		
+		$this->load->view('posts/view', $data);
 		$data['posts'] = $this->Posts_model->get_posts();
 		
 		$this->load->view('templates/header');
@@ -14,28 +21,31 @@ class Posts extends CI_Controller{
 		$this->load->view('templates/footer');
 	}
 	
+	// za Read More u kategoriji Sve voznje
 	public function view($mjesto_polaska=NULL){
-		$data['posts'] = $this->Posts_model->get_posts($mjesto_polaska);
-		if(empty($data['post'])){
+		$data['mjesto_odredista']= $this->Posts_model->get_posts($mjesto_polaska);
+
+		if(empty($data['mjesto_odredista'])){
 			show_404();
 		}
-		$data['title'] = $data['mjesto_polaska']['mjesto_odredista'];
+		$data['id'] = $data['mjesto_polaska']['mjesto_odredista'];
 		
 		$this->load->view('templates/header');
 		$this->load->view('posts/view',$data);
 		$this->load->view('templates/footer');
 	}
 	
+	
 	public function create(){
 		$data['title'] ='Create Posts';
 		
-		$this->form_validation->set_rules('title', 'Title', 'required');
-		$this->form_validation->set_rules('body', 'Body', 'required');
+		$this->form_validation->set_rules('mjesto_polaska', 'Mjesto Polaska', 'required');
+		$this->form_validation->set_rules('mjesto_odredista', 'Mjesto Odredista', 'required');
 		
 		if($this->form_validation->run()===FALSE){
 			
 			$this->load->view('templates/header');
-			$this->load->view('posts/create');
+			$this->load->view('posts/create',$data);
 			$this->load->view('templates/footer');
 			
 		}else {
@@ -44,4 +54,28 @@ class Posts extends CI_Controller{
 		}
 		
 	}
-}
+	
+	public function delete($id){
+		$this->Posts_model->delete_post($id);
+		redirect('posts');
+	}
+	
+	public function edit($id){
+		$data['mjesto_odredista']= $this->Posts_model->get_posts($id);
+		
+		if(empty($data['mjesto_odredista'])){
+			show_404();
+		}
+		$data['id'] = 'Edit Post';
+		
+		$this->load->view('templates/header');
+		$this->load->view('posts/edit',$data);
+		$this->load->view('templates/footer');
+	}
+	
+	public function update(){
+		echo 'Submited';
+	}
+		
+	}
+	
