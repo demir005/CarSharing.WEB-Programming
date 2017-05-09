@@ -11,24 +11,22 @@ class Posts extends CI_Controller{
 	
 	public function index($page='home'){
 		
-		$data['mjesto_polaska']= 'Sve voznje';
 		
-		$this->load->view('posts/view', $data);
-		$data['posts'] = $this->Posts_model->get_posts();
+		$data['posts']= $this->Posts_model->get_posts();
 		
 		$this->load->view('templates/header');
 		$this->load->view('posts/index',$data);
 		$this->load->view('templates/footer');
 	}
 	
-	// za Read More u kategoriji Sve voznje
+	
 	public function view($mjesto_polaska=NULL){
-		$data['mjesto_odredista']= $this->Posts_model->get_posts($mjesto_polaska);
-
-		if(empty($data['mjesto_odredista'])){
+		$data['posts'] = $this->Posts_model->get_posts($mjesto_polaska);
+		
+		if(empty($data['posts'])){
 			show_404();
 		}
-		$data['id'] = $data['mjesto_polaska']['mjesto_odredista'];
+		$data['id'] =$data['posts'];
 		
 		$this->load->view('templates/header');
 		$this->load->view('posts/view',$data);
@@ -38,9 +36,6 @@ class Posts extends CI_Controller{
 	
 	public function create(){
 		$data['title'] ='Create Posts';
-		
-		$this->form_validation->set_rules('mjesto_polaska', 'Mjesto Polaska', 'required');
-		$this->form_validation->set_rules('mjesto_odredista', 'Mjesto Odredista', 'required');
 		
 		if($this->form_validation->run()===FALSE){
 			
@@ -57,6 +52,7 @@ class Posts extends CI_Controller{
 	
 	public function delete($id){
 		$this->Posts_model->delete_post($id);
+	
 		redirect('posts');
 	}
 	
@@ -74,7 +70,8 @@ class Posts extends CI_Controller{
 	}
 	
 	public function update(){
-		echo 'Submited';
+		$this->Posts_model->update_post();
+		redirect('posts');
 	}
 		
 	}

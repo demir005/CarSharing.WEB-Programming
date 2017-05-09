@@ -2,6 +2,8 @@
 <?php echo form_open('posts/create');?>
 <?php echo validation_errors();?>
 
+
+
   <div class="form-group">
     <label for="Mjesto Polaska">Mjesto Polaska</label>
     <input type="mjesto_polaska" class="form-control" id="mjestopolaska" placeholder="Mjesto Polaska">
