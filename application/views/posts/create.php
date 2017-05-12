@@ -1,12 +1,20 @@
-<h2>Postavi Oglas</h2>
+<h2><?= $title;?></h2>
 <?php echo form_open('posts/create');?>
 <?php echo validation_errors();?>
 
+<!DOCTYPE h2 PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">	
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+ 
 
-
-  <div class="form-group">
+ <div class="form-group">
     <label for="Mjesto Polaska">Mjesto Polaska</label>
-    <input type="mjesto_polaska" class="form-control" id="mjestopolaska" placeholder="Mjesto Polaska">
+    <input type="mjesto_polaska" class="form-control" id="mjesto_polaska" placeholder="Mjesto Polaska">
   </div>
   
   <div class="form-group">
@@ -25,11 +33,16 @@
 	  </select>
 	</div>
 	
+	 <div class="form-group">
+    <label for="Cijena">Cijena</label>
+    <input type="cijena" class="form-control" id="cijena" placeholder="Cijena">
+  </div>
+	
 	
 	<div class="bootstrap-iso">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
     <form method="post">
      <div class="form-group ">
       <label class="control-label " for="date">
@@ -82,6 +95,19 @@
 </div>
 
 <div class="form-group">
+<label for="Mjesto Odredista">Kategorija</label>
+<div>
+<select name="category_id" class="form_control">
+<?php foreach($categories as $category):?>
+<option value="<?php echo $category['id'];?>"><?php echo $category['name'];?></option>
+<?php endforeach;?>
+</select>
+</div>
+</div>
+
+
+
+<div class="form-group">
   <label for="comment">Opis:</label>
   <textarea class="form-control" rows="5" id="comment"></textarea>
 </div>
@@ -92,3 +118,11 @@
   	  <button type="Dodaj" class="btn btn-default">Dodaj</button>
   </div>
 
+
+
+
+</head>
+
+</html>	
+	
+ 

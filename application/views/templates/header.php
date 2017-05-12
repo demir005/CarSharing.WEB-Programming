@@ -26,7 +26,6 @@
         <li><a href="<?php echo base_url();?>posts/create">Postavi Oglas</a></li>
  		<li><a href="<?php echo base_url();?>posts">Sve voznje</a></li>
  		<li><a href="<?php echo base_url();?>about">O nama</a></li>
- 		
         <li><a href="#">Kontakt</a></li>
         <li class="dropdown">
       </form>

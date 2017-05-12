@@ -4,6 +4,7 @@
 
 
 	<input type="hidden" name="id" value="<?php echo $post['id'];?>
+	
   <div class="form-group">
     <label for="Mjesto Polaska">Mjesto Polaska</label>
     <input type="mjesto_polaska" class="form-control" id="mjestopolaska" placeholder="Mjesto Polaska">
@@ -79,6 +80,16 @@
    </div>
   </div>
  </div>
+</div>
+<div class="form-group">
+<label for="Mjesto Odredista">Kategorija</label>
+<div>
+<select name="category_id" class="form_control">
+<?php foreach($categories as $category):?>
+<option value="<?php echo $category['id'];?>"><?php echo $category['name'];?></option>
+<?php endforeach;?>
+</select>
+</div>
 </div>
 
 <div class="form-group">

@@ -20,8 +20,8 @@ class Posts extends CI_Controller{
 	}
 	
 	
-	public function view($mjesto_polaska=NULL){
-		$data['posts'] = $this->Posts_model->get_posts($mjesto_polaska);
+	public function view($mjestoOdredista=NULL){
+		$data['posts'] = $this->Posts_model->get_posts($mjestoOdredista);
 		
 		if(empty($data['posts'])){
 			show_404();
@@ -36,6 +36,10 @@ class Posts extends CI_Controller{
 	
 	public function create(){
 		$data['title'] ='Create Posts';
+		$data['categories'] = $this->Posts_model->get_categories();
+		
+		$this->form_validation->set_rules('mjestoPolaska','Mjesto Polaska', 'required');
+		$this->form_validation->set_rules('mjestoOdredista','Mjesto Odredista', 'required');
 		
 		if($this->form_validation->run()===FALSE){
 			
@@ -51,15 +55,16 @@ class Posts extends CI_Controller{
 	}
 	
 	public function delete($id){
+		
 		$this->Posts_model->delete_post($id);
-	
 		redirect('posts');
 	}
 	
-	public function edit($id){
-		$data['mjesto_odredista']= $this->Posts_model->get_posts($id);
+	public function edit($mjestoOdredista){
+		$data['mjestoOdredista']= $this->Posts_model->get_posts($mjestoOdredista);
+		$data['categories'] = $this->Posts_model->get_categories();
 		
-		if(empty($data['mjesto_odredista'])){
+		if(empty($data['mjestoOdredista'])){
 			show_404();
 		}
 		$data['id'] = 'Edit Post';
@@ -69,9 +74,12 @@ class Posts extends CI_Controller{
 		$this->load->view('templates/footer');
 	}
 	
+	
 	public function update(){
+		
 		$this->Posts_model->update_post();
 		redirect('posts');
+		
 	}
 		
 	}
