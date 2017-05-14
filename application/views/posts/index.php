@@ -10,8 +10,4 @@
 	<p><a class="btn btn-default"    href="<?php echo site_url('/posts/' .$post['mjestoOdredista']); ?>">Read More</a></p>
 	</div>
 	</div>
-
-
-
-
 <?php endforeach;?>

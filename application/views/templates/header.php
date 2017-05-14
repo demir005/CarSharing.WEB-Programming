@@ -23,14 +23,18 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="<?php echo base_url()?>">Home<span class="sr-only">(current)</span></a></li>
+        
         <li><a href="<?php echo base_url();?>posts/create">Postavi Oglas</a></li>
- 		<li><a href="<?php echo base_url();?>posts">Sve voznje</a></li>
+         <li><a href="<?php echo base_url();?>categories/create">Postavi Kategoriju</a></li>
+        <li><a href="<?php echo base_url();?>categories">Sve voznje</a></li>
  		<li><a href="<?php echo base_url();?>about">O nama</a></li>
+ 		
         <li><a href="#">Kontakt</a></li>
         <li class="dropdown">
       </form>
       <ul class="nav navbar-nav navbar-right">
     </div><!-- /.navbar-collapse -->
+   
   </div><!-- /.container-fluid -->
 </nav>
 
