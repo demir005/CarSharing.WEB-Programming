@@ -48,7 +48,24 @@ class Posts extends CI_Controller{
 			$this->load->view('templates/footer');
 			
 		}else {
-			$this->Posts_model->create_post();
+			
+			//upload image
+			$config['upload_path'] = './assets/images/posts';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size'] = '2048';
+			$config['max_width'] = '500';
+			$config['max_height'] = '500';
+			
+			$this->load->libary('upload', $config);
+			
+			if(!$this->upload->do_upload()){
+				$error=array('error'=>$this->upload->display_errors());
+				$post_image='noimage.jpg';
+			}else{
+				$data = array('upload_data'=>$this->upload->data());
+				$post_image =$_FILES['userfile']['name'];
+			}
+			$this->Posts_model->create_post($post_image);
 			redirect('posts');
 		}
 		

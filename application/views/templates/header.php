@@ -2,7 +2,7 @@
 	<head>
 	 	<title>Car Sharing</title>
 	 	<link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css"/>	
-	 	<link rel="stylesheet" href="<?php echo base_url()?>/assets/css/style.css">
+	 	<link rel="stylesheet" href="<?php echo base_url()?>assets/css/style.css">
 	</head>
 	
 <body>

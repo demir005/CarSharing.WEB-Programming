@@ -1,5 +1,5 @@
 <h2><?= $title;?></h2>
-<?php echo form_open('posts/create');?>
+<?php echo form_open_multipart('posts/create');?>
 <?php echo validation_errors();?>
 
 <!DOCTYPE h2 PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">	
@@ -105,6 +105,11 @@
 </div>
 </div>
 
+ <div class="form-group">
+ <label>Postavi sliku:</label>
+ <p><b>samo oni koji nude prevoz nek postave sliku svojeg vozila</b></p>
+ <input type="file" name="userfile" size="20">
+ </div>
 
 
 <div class="form-group">
@@ -115,8 +120,9 @@
 
 
   <div>
-  	  <button type="Dodaj" class="btn btn-default">Dodaj</button>
+      <button type="submit" class="btn btn-default">Dodaj</button>
   </div>
+	<?php echo form_close();?>
 
 
 
