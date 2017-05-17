@@ -1,17 +1,15 @@
-<?php echo form_open('user/login');?>
+<?php echo form_open(); ?>
+
 <div class="row">
 	<div class="col-md-4 col-md-offset-4">
-	<h1 class="text-center"><?php echo $title;?></h1>
+	<h1 class="text-center"><?php echo $title; ?></h1>
 	<div class="form-group">
-		<input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+		<input type="text" name="username" class="form-control" placeholder="Enter Username" required autofocus>
 	</div>
-	
 	<div class="form-group">
-		<input type="password" name="password" class="form-control" placeholder="Password" required autofocus>
+		<input type="password" name="password" class="form-control" placeholder="Enter Password" required autofocus>
 	</div>
-	
-	<button type="Submit" class="btn btn-primary">Login</button>
-	
+	<button type="submit" class="btn btn-primary btn-block">Login</button>
 	</div>
 </div>
 

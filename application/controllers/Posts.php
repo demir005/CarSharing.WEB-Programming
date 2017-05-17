@@ -21,6 +21,7 @@ class Posts extends CI_Controller{
 	
 	
 	public function view($mjestoOdredista=NULL){
+		
 		$data['posts'] = $this->Posts_model->get_posts($mjestoOdredista);
 		$post_id = $data['posts']['id'];
 		$data['comments'] = $this->Comment_model->get_comments($post_id);
@@ -69,6 +70,7 @@ class Posts extends CI_Controller{
 				$post_image =$_FILES['userfile']['name'];
 			}
 			$this->Posts_model->create_post($post_image);
+			$this->session->set_flashdata('post_creted', 'You post has been created:) ') ;
 			redirect('posts');
 		}
 		
@@ -77,6 +79,7 @@ class Posts extends CI_Controller{
 	public function delete($id){
 		
 		$this->Posts_model->delete_post($id);
+		$this->session->set_flashdata('post_deleted', 'You post has been deleted :) ') ;
 		redirect('posts');
 	}
 	
@@ -98,6 +101,7 @@ class Posts extends CI_Controller{
 	public function update(){
 		
 		$this->Posts_model->update_post();
+		$this->session->set_flashdata('post_updated', 'You post has been updated :) ') ;
 		redirect('posts');
 		
 	}

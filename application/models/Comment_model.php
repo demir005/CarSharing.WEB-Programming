@@ -20,4 +20,6 @@ class Comment_model extends CI_Model{
 		$query = $this->db->get_where('comments',array('post_id'=>$post_id));
 		return  $query->result_array();
 	}
+	
+	
 }

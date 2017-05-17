@@ -1,36 +1,31 @@
 <?php
+
 class User_model extends CI_Model{
-	public function __construct(){
-		parent::__construct();
-		$this->load->database();
-	}
 	
 	public function register($enc_password){
-		//data user array
+		
 		$data = array(
-				'name'=>$this->input->post('name'),
-				'surname'=>$this->input->post('surname'),
-				'email'=>$this->input->post('email'),
-				'address'=>$this->input->post('address'),
-				'phoneNumber'=>$this->input->post('phoneNumber'),
-				'username'=>$this->input->post('username'),
-				'password'=>$enc_password
+				'name' => $this->input->post('name'),
+				'surname' => $this->input->post('surname'),
+				'address' => $this->input->post('address'),
+				'email' =>   $this->input->post('email'),
+				'username' => $this->input->post('username'),
+				'password' => $enc_password
+				
 		);
 		
-		//Insert user
-		return $this->db->insert('users',$data);
-		
+		return $this->db->insert('users', $data);
 		
 	}
 	
-	public function login($username,$password){
+	//Log user in 
+	
+	public function login($username, $password){
 		//Validate
-		
 		$this->db->where('username',$username);
 		$this->db->where('password',$password);
 		
-		$result = $this->db->get('users');
-		
+		$result= $this->db->get('users');
 		
 		if($result->num_rows()==1){
 			return $result->row(0)->id;
@@ -39,18 +34,12 @@ class User_model extends CI_Model{
 		}
 	}
 	
-	
-	
-	
-	//Check username exists
-	
 	public function check_username_exists($username){
 		$query = $this->db->get_where('users',array('username'=>$username));
 		if(empty($query->row_array())){
 			return true;
-		}
-		else{
-			return  false;
+		}else{
+			return false;
 		}
 	}
 	
@@ -58,9 +47,8 @@ class User_model extends CI_Model{
 		$query = $this->db->get_where('users',array('email'=>$email));
 		if(empty($query->row_array())){
 			return true;
-		}
-		else{
-			return  false;
+		}else{
+			return false;
 		}
 	}
 }
