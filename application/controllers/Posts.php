@@ -24,7 +24,7 @@ class Posts extends CI_Controller{
 		
 		$data['posts'] = $this->Posts_model->get_posts($mjestoOdredista);
 		$post_id = $data['posts']['id'];
-		$data['comments'] = $this->Comment_model->get_comments($post_id);
+		$data['comments'] = $this->comment_model->get_comments($post_id);
 		
 		
 		if(empty($data['posts'])){
@@ -39,6 +39,11 @@ class Posts extends CI_Controller{
 	
 	
 	public function create(){
+		//check if user is logged in
+		
+		if(!$this->session->userdata('logged_in')){
+			redirect('users/login');
+		}
 		$data['title'] ='Create Posts';
 		$data['categories'] = $this->Posts_model->get_categories();
 		
@@ -78,13 +83,28 @@ class Posts extends CI_Controller{
 	
 	public function delete($id){
 		
+		if(!$this->session->userdata('logged_in')){
+			redirect('users/login');
+		}
+		
 		$this->Posts_model->delete_post($id);
 		$this->session->set_flashdata('post_deleted', 'You post has been deleted :) ') ;
 		redirect('posts');
 	}
 	
 	public function edit($mjestoOdredista){
+		if(!$this->session->userdata('logged_in')){
+			redirect('users/login');
+			
+		}
+		
 		$data['mjestoOdredista']= $this->Posts_model->get_posts($mjestoOdredista);
+		
+		//Check if user is logged in
+		if($this->session->userdata('user_id') !=$this->Posts_model->get_posts($mjestoOdredista)['user_id'])
+			redirect('posts');
+		
+		
 		$data['categories'] = $this->Posts_model->get_categories();
 		
 		if(empty($data['mjestoOdredista'])){
@@ -99,6 +119,9 @@ class Posts extends CI_Controller{
 	
 	
 	public function update(){
+		if(!$this->session->userdata('logged_in')){
+			redirect('users/login');
+		}
 		
 		$this->Posts_model->update_post();
 		$this->session->set_flashdata('post_updated', 'You post has been updated :) ') ;

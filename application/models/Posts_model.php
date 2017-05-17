@@ -24,6 +24,7 @@
  		
  		$data=array(
  				'mjestoPolaska' => $mjestoPolaska,
+ 				'user_id' =>$this->session->userdata('user_id'),
  				'mjestoOdredista' => $this->input ->post('mjestoOdredista'),
  				'vrsta_usluge' => $this->input ->post('vrsta_usluge'),
  				'datum_polaska' => $this->input ->post('datum_polaska'),
