@@ -1,11 +1,10 @@
 <h2>Postavi Oglas</h2>
 <?php echo form_open('posts/update');?>
-<?php echo validation_errors();?>
 
 
 	<input type="hidden" name="id" value="<?php echo $post['id'];?>
 	
-  <div class="form-group">
+   <div class="form-group">
     <label for="Mjesto Polaska">Mjesto Polaska</label>
     <input type="mjesto_polaska" class="form-control" id="mjestopolaska" placeholder="Mjesto Polaska">
   </div>

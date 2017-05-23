@@ -4,6 +4,7 @@
 	<div class="col-md-3">
 	<img  class="post-thumb thumbnail" src="<?php echo site_url();?>assets/images/posts/<?php echo $post['post_image']; ?>">
 </div>
+
 <div class="col-md-9">
 	<small class="post-date">Posted on:<?php echo $post['createdAt'];?>in: <strong><?php echo $post['name'];?></small><br></strong>
 	</br>

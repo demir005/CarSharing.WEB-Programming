@@ -1,8 +1,9 @@
 <?php
 class Comments extends CI_Controller{
+	
 	public function create($post_id){
-		$slug = $this->input->post('slug');
-		$data['post'] = $this->Posts_model->get_posts($slug);
+	//	$post_id = $this->input->post('post_id');
+		$data['post'] = $this->Posts_model->get_posts($post_id);
 		
 		$this->form_validation->set_rules('name', 'Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
@@ -13,7 +14,7 @@ class Comments extends CI_Controller{
 			$this->load->view('posts/view',$data);
 			$this->load->view('templates/footer');
 		}else {
-			$this->Comment_model->create_comment($post_id);
+			$this->comment_model->create_comment($post_id);
 			redirect('posts/'.$slug);
 		}
 	}
