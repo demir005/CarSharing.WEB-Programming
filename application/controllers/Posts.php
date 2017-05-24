@@ -5,7 +5,7 @@ class Posts extends CI_Controller{
 
     function __construct(){
         parent::__construct();
-        $this->load->database();
+        $this->load->database();	
        
     }
 
@@ -45,7 +45,15 @@ class Posts extends CI_Controller{
         if(!$this->session->userdata('logged_in')){
             redirect('users/login');
         }
-
+			
+       $this->form_validation->set_rules('mjestoPolaska', 'Mjesto Polaska', 'required');
+       $this->form_validation->set_rules('mjestoOdredista', 'Mjesto Odredista', 'required');
+       $this->form_validation->set_rules('datumPolaska', 'Datum Polaska', 'required');
+       $this->form_validation->set_rules('datumPovratka', 'Datum Odredista', 'required');
+       $this->form_validation->set_rules('cijena', 'Cijena', 'required');
+       $this->form_validation->set_rules('brojMjesta', 'Broj mjesta', 'required');
+       $this->form_validation->set_rules('opis', 'Opis', 'required');
+        
         $data['title'] ='Create Posts';
         $data['categories'] = $this->Posts_model->get_categories();
 

@@ -4,8 +4,9 @@
     <hr>
     <?php if ($this->session->userdata('user_id') == $posts['user_id']): ?>
         <?= form_open('/posts/delete/' . $posts['id']) ?>
-        <a class="btn btn-default" href="/posts/edit/<?= $posts['id'] ?>">Edit</a>
+        <a class="btn btn-default" href='/posts/edit/'<?= $posts['id'] ?>">Edit</a>
         <input type="submit" value="Delete" class="btn btn-danger">
+        
         <?= form_close() ?>
     <?php endif ?>
 </div>

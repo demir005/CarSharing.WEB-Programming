@@ -26,10 +26,10 @@ class Posts_Model extends CI_Model{
 		$mjestoPolaska = url_title($this->input->post('title'));
 		$data=array(
 				'mjestoPolaska' => $mjestoPolaska,
-				'mjestoOdredista' => $this->input ->post('Mjesto Odredista'),
-				'datumPolaska' => $this->input ->post('Datum Polaska'),
-				'datumPovratka' => $this->input ->post('Datum Povratka'),
-				'brojMjesta' => $this->input ->post('Broj Mjesta'),
+				'mjestoOdredista' => $this->input ->post('mjestoOdredista'),
+				'datumPolaska' => $this->input ->post('datumPolaska'),
+				'datumPovratka' => $this->input ->post('datumPovratka'),
+				'brojMjesta' => $this->input ->post('brojMjesta'),
 				'cijena' => $this->input ->post('cijena'),
 				'opis' => $this->input ->post('Opis'),
 				'category_id'=>$this->input->post('category_id'),
