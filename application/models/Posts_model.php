@@ -31,7 +31,7 @@ class Posts_Model extends CI_Model{
 				'datumPovratka' => $this->input ->post('datumPovratka'),
 				'brojMjesta' => $this->input ->post('brojMjesta'),
 				'cijena' => $this->input ->post('cijena'),
-				'opis' => $this->input ->post('Opis'),
+				'opis' => $this->input ->post('opis'),
 				'category_id'=>$this->input->post('category_id'),
 				'user_id' =>$this->session->userdata('user_id'),
 				'post_image'=>$post_image
@@ -54,12 +54,12 @@ class Posts_Model extends CI_Model{
 		$mjestoPolaska=url_title($this->input->post('Mjesto Polaska'));
 		$data=array(
 				'mjestoPolaska' => $mjestoPolaska,
-				'mjestoOdredista' => $this->input ->post('Mjesto Odredista'),
-				'datumPolaska' => $this->input ->post('Datum Polaska'),
-				'datumPovratka' => $this->input ->post('Datum Povratka'),
-				'brojMjesta' => $this->input ->post('Broj Mjesta'),
+				'mjestoOdredista' => $this->input ->post('mjestoOdredista'),
+				'datumPolaska' => $this->input ->post('datumPolaska'),
+				'datumPovratka' => $this->input ->post('datumPovratka'),
+				'brojMjesta' => $this->input ->post('brojMjesta'),
 				'cijena' => $this->input ->post('cijena'),
-				'opis' => $this->input ->post('Opis'),
+				'opis' => $this->input ->post('opis'),
 				'category_id'=>$this->input->post('category_id'),
 				'user_id' =>$this->session->userdata('user_id'),
 				'post_image'=>$post_image

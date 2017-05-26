@@ -2,8 +2,8 @@
 class Comments extends CI_Controller{
 	
 	public function create($post_id){
-	//	$post_id = $this->input->post('post_id');
-		$data['post'] = $this->Posts_model->get_posts($post_id);
+		$slug = $this->input->post('slug');
+		$data['post'] = $this->Posts_model->get_posts($slug);
 		
 		$this->form_validation->set_rules('name', 'Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
@@ -18,6 +18,7 @@ class Comments extends CI_Controller{
 			redirect('posts/'.$slug);
 		}
 	}
+	
 	
 }
 ?>

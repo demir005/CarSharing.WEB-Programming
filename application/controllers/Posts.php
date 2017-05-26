@@ -3,9 +3,10 @@
 
 class Posts extends CI_Controller{
 
-    function __construct(){
+    public function __construct(){
         parent::__construct();
         $this->load->database();	
+        $this->load->library('upload');
        
     }
 
@@ -53,6 +54,7 @@ class Posts extends CI_Controller{
        $this->form_validation->set_rules('cijena', 'Cijena', 'required');
        $this->form_validation->set_rules('brojMjesta', 'Broj mjesta', 'required');
        $this->form_validation->set_rules('opis', 'Opis', 'required');
+       $this->form_validation->set_rules('post_image', 'Image', 'required');
         
         $data['title'] ='Create Posts';
         $data['categories'] = $this->Posts_model->get_categories();
@@ -74,7 +76,8 @@ class Posts extends CI_Controller{
             $config['max_width'] = '500';
             $config['max_height'] = '500';
 
-            $this->load->libary('upload', $config);
+            $this->load->library('upload');
+            
 
             if(!$this->upload->do_upload()){
                 $error=array('error'=>$this->upload->display_errors());

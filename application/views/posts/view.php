@@ -1,5 +1,7 @@
 <h2>Info o voznji:</h2>
 
+
+
 <div class="post-body">
     <hr>
     <?php if ($this->session->userdata('user_id') == $posts['user_id']): ?>
@@ -7,7 +9,7 @@
         <a class="btn btn-default" href='/posts/edit/'<?= $posts['id'] ?>">Edit</a>
         <input type="submit" value="Delete" class="btn btn-danger">
         
-        <?= form_close() ?>
+        <?php echo form_close();  ?>
     <?php endif ?>
 </div>
 
@@ -16,7 +18,7 @@
     <?php if($comments): ?>
     <?php foreach ($comments as $comment):?>
     <div class="well">
-        <h5><?php  echo $comment['body']; ?>[by <strong><?php echo $comment['name']?></strong>]</h5>
+        <h5><?php  echo $comment['body']; ?>[by  <strong><?php echo $comment['name']?></strong>]</h5>
      </div>
             <?php endforeach;?>
             <?php  else : ?>
@@ -45,6 +47,6 @@
 </div>
 
 <button class="btn btn-primary" type="submit">Submit</button>
-</form>
+<?php echo form_close(); ?>
 </div>
 </div>
