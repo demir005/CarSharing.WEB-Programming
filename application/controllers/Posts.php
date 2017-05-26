@@ -116,8 +116,10 @@ class Posts extends CI_Controller{
         $data['mjestoOdredista']= $this->Posts_model->get_posts($mjestoOdredista);
 
         //Check if user is logged in
-        if($this->session->userdata('user_id') !=$this->Posts_model->get_posts($mjestoOdredista)['user_id'])
-            redirect('posts');
+        if($this->session->userdata('user_id') != $this->Posts_model->get_posts($mjestoOdredista)['user_id']){
+        	redirect('posts');
+        }
+            
         $data['categories'] = $this->Posts_model->get_categories();
 
         if(empty($data['mjestoOdredista'])){

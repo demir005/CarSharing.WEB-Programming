@@ -12,7 +12,7 @@
   </script>
   
 
-<?php echo form_open_multipart('posts/create');?>
+<?php echo form_open_multipart('posts/edit');?>
 <?php echo validation_errors();?>
 
 	<div class="row">

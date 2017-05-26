@@ -30,6 +30,8 @@
         <li><a href="<?php echo base_url();?>categories">Sve voznje</a></li>
  		<li><a href="<?php echo base_url();?>about">O nama</a></li>
  		<li><a href="<?php echo base_url();?>users/logout">Log out</a></li>
+ 		<li><a href="<?php echo base_url();?>contact/index">Contact</a></li>
+ 		
  		<?php endif;?>
  		
  		
