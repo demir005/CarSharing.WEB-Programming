@@ -10,9 +10,19 @@ class Posts extends CI_Controller{
        
     }
 
-    public function index($page='home'){
+    public function index($offset = 0){
 
-        $data['posts']= $this->Posts_model->get_posts();
+    	
+        
+        $config['base_url'] = base_url() . 'posts/index/';
+        $config['total_rows'] = $this->db->count_all('posts');
+        $config['per_page'] = 3;
+        $config['uri_segment'] = 3;
+        $config['attributes'] = array('class' => 'pagination-link');
+        
+        $this->pagination->initialize($config);
+        
+        $data['posts']= $this->Posts_model->get_posts(FALSE,$config['per_page'],$offset);
 
         $this->load->view('templates/header');
         $this->load->view('posts/index',$data);
@@ -53,8 +63,8 @@ class Posts extends CI_Controller{
        $this->form_validation->set_rules('datumPovratka', 'Datum Odredista', 'required');
        $this->form_validation->set_rules('cijena', 'Cijena', 'required');
        $this->form_validation->set_rules('brojMjesta', 'Broj mjesta', 'required');
-       $this->form_validation->set_rules('opis', 'Opis', 'required');
-       $this->form_validation->set_rules('post_image', 'Image', 'required');
+      // $this->form_validation->set_rules('opis', 'Opis', 'required');
+      // $this->form_validation->set_rules('post_image', 'Image', 'required');
         
         $data['title'] ='Create Posts';
         $data['categories'] = $this->Posts_model->get_categories();

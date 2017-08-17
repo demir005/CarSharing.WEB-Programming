@@ -27,10 +27,11 @@
         <li class="active"><a href="<?php echo base_url()?>">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="<?php echo base_url();?>posts/create">Postavi Oglas</a></li>
          <li><a href="<?php echo base_url();?>categories/create">Postavi Kategoriju</a></li>
-        <li><a href="<?php echo base_url();?>categories">Sve voznje</a></li>
+        <li><a href="<?php echo base_url();?>categories">Kategorije</a></li>
+        <li><a href="<?php echo base_url();?>posts/index">Sve voznje</a></li>
  		<li><a href="<?php echo base_url();?>about">O nama</a></li>
- 		<li><a href="<?php echo base_url();?>users/logout">Log out</a></li>
  		<li><a href="<?php echo base_url();?>contact/index">Contact</a></li>
+ 		<li><a href="<?php echo base_url();?>users/logout">Log out</a></li>
  		
  		<?php endif;?>
  		
@@ -83,3 +84,7 @@
 <?php  if($this->session->flashdata('user_loggedout')):?>
 <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'?>
 <?php endif;?> 
+
+<?php  if($this->session->flashdata('category_deleted')):?>
+<?php echo '<p class="alert alert-success">'.$this->session->flashdata('category_deleted').'</p>'?>
+<?php endif;?>

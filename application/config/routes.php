@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['contact/(:any)'] = 'contact/index/$1';
-
-
+ 
 $route['posts/index'] = 'posts/index';
 $route['posts/update']='posts/update';
 $route['posts/create']='posts/create';

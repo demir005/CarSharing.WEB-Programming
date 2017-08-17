@@ -8,7 +8,10 @@ class Posts_Model extends CI_Model{
 		
 	}
 	
-	function get_posts($mjestoOdredista=FALSE){
+	function get_posts($mjestoOdredista=FALSE, $limit = FALSE,$offset = FALSE){
+		if($limit){
+			$this->db->limit($limit,$offset);
+		}
 		if($mjestoOdredista === FALSE){
 			
 			$this->db->order_by('posts.id','DESC');

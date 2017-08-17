@@ -8,7 +8,6 @@ p    {color: red;}
 </style>
 </head>
 <body>
-<img src="/CS/assets/images/About/demir.jpg"><p>Demir Mahmutovic</p>
 
 </body>
 
