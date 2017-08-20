@@ -1,12 +1,59 @@
-<h2>Info o voznji:</h2>
+<h2>Informacije:</h2>
 
+<h5>Mjesto Polaska: </h5>
+    <?php if($posts): ?>
+    <div class="well">
+        <h5><?php  echo $posts['mjestoPolaska']; ?>
+     </div>
+            <?php  else : ?>
+ <?php endif;?>
+ 
+ <h5>Mjesto Odredista: </h5>
+    <?php if($posts): ?>
+    <div class="well">
+        <h5><?php  echo $posts['mjestoOdredista']; ?>
+     </div>
+            <?php  else : ?>
+ <?php endif;?>
+ 
+ <h5>Datum Polaska: </h5>
+    <?php if($posts): ?>
+    <div class="well">
+        <h5><?php  echo $posts['datumPolaska']; ?>
+     </div>
+            <?php  else : ?>
+ <?php endif;?>
+ 
+  <h5>Datum Povratka: </h5>
+    <?php if($posts): ?>
+    <div class="well">
+        <h5><?php  echo $posts['datumPovratka']; ?>
+     </div>
+            <?php  else : ?>
+ <?php endif;?>
+ 
+  <h5>Cijena: </h5>
+    <?php if($posts): ?>
+    <div class="well">
+        <h5><?php  echo $posts['cijena']; ?>
+     </div>
+            <?php  else : ?>
+ <?php endif;?>
+ 
+  <h5>Broj Slobodnih Mjesta: </h5>
+    <?php if($posts): ?>
+    <div class="well">
+        <h5><?php  echo $posts['brojMjesta']; ?>
+     </div>
+            <?php  else : ?>
+ <?php endif;?>
 
 
 <div class="post-body">
     <hr>
     <?php if ($this->session->userdata('user_id') == $posts['user_id']): ?>
         <?= form_open('/posts/delete/' . $posts['id']) ?>
-        <a class="btn btn-default" href='/posts/edit/'<?= $posts['id'] ?>">Edit</a>
+        <a class="btn btn-default" href='posts/edit'<?= $posts['id'] ?>">Edit</a>
         <input type="submit" value="Delete" class="btn btn-danger">
         
         <?php echo form_close();  ?>

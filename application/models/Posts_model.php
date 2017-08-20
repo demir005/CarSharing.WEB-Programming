@@ -21,6 +21,8 @@ class Posts_Model extends CI_Model{
 		}
 		
 		$query=$this->db->get_where('posts', array('mjestoOdredista' => $mjestoOdredista));
+	
+		
 		return $query->row_array();
 	}
 	
@@ -28,7 +30,7 @@ class Posts_Model extends CI_Model{
 	public function create_post($post_image){
 		$mjestoPolaska = url_title($this->input->post('title'));
 		$data=array(
-				'mjestoPolaska' => $mjestoPolaska,
+				'mjestoPolaska' => $this->input->post('mjestoPolaska'),
 				'mjestoOdredista' => $this->input ->post('mjestoOdredista'),
 				'datumPolaska' => $this->input ->post('datumPolaska'),
 				'datumPovratka' => $this->input ->post('datumPovratka'),
@@ -54,22 +56,23 @@ class Posts_Model extends CI_Model{
 	
 	//editovanje posta
 	public function update_post(){
-		$mjestoPolaska=url_title($this->input->post('Mjesto Polaska'));
+		$slug = url_title($this->input->posts('title'));
 		$data=array(
-				'mjestoPolaska' => $mjestoPolaska,
+				'slug' =>			 $slug,
+				'id'=>				 $this->input->posts('id'),
+				'category_id'=>      $this->input->post('category_id'),
+				'user_id' =>         $this->session->userdata('user_id'),
+				'mjestoPolaska' =>   $this->input->posts('mjestoPolaska'),
 				'mjestoOdredista' => $this->input ->post('mjestoOdredista'),
-				'datumPolaska' => $this->input ->post('datumPolaska'),
-				'datumPovratka' => $this->input ->post('datumPovratka'),
-				'brojMjesta' => $this->input ->post('brojMjesta'),
-				'cijena' => $this->input ->post('cijena'),
-				'opis' => $this->input ->post('opis'),
-				'category_id'=>$this->input->post('category_id'),
-				'user_id' =>$this->session->userdata('user_id'),
-				'post_image'=>$post_image
-				
+				'datumPolaska' =>    $this->input ->post('datumPolaska'),
+				'datumPovratka' =>   $this->input ->post('datumPovratka'),
+				'cijena' =>          $this->input ->post('cijena'),
+				'brojMjesta' =>      $this->input ->post('brojMjesta'),
+				'opis' =>            $this->input ->post('opis'),
+				'post_image'=>       $post_image	
 		);
-		$this->db->where('id',$this->input->post('id'));
-		return $this->db->update('posts',$data);
+		$this->db->where('id', $this->input->posts('id'));
+		return $this->db->update('posts', $data);
 		
 	}
 	
@@ -88,6 +91,12 @@ class Posts_Model extends CI_Model{
 		return $query->result_array();
 		
 	}
+	
+	public function get_data_from_db(){
+	      $query = $this->db->get('posts');
+	      return $query;
+	}
+	
 	
 }
 

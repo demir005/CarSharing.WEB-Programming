@@ -8,7 +8,7 @@
 <div class="col-md-9">
 	<small class="post-date">Posted on:<?php echo $post['createdAt'];?>in: <strong><?php echo $post['name'];?></small><br></strong>
 	</br>
-	<p><a class="btn btn-default"    href="<?php echo site_url('/posts/' .$post['mjestoOdredista']); ?>">Read More</a></p>
+	<p><a class="btn btn-default"  href="<?php echo site_url('posts/' .$post['mjestoOdredista']); ?>">Read More</a></p>
 	</div>
 	</div>
 <?php endforeach;?>

@@ -11,9 +11,9 @@ class Posts extends CI_Controller{
     }
 
     public function index($offset = 0){
-
     	
-        
+   
+       
         $config['base_url'] = base_url() . 'posts/index/';
         $config['total_rows'] = $this->db->count_all('posts');
         $config['per_page'] = 3;
@@ -27,6 +27,12 @@ class Posts extends CI_Controller{
         $this->load->view('templates/header');
         $this->load->view('posts/index',$data);
         $this->load->view('templates/footer');
+        
+        
+        //loading post model for fetching all data from database and dispaly in view.php
+        $this->load->model('Posts_model');
+        $data['get_data_from_db'] = $this->Posts_model->get_data_from_db();
+        $this->load->view('posts/view', $data);
     }
 
 
@@ -34,6 +40,7 @@ class Posts extends CI_Controller{
 
 
         $data['posts'] = $this->Posts_model->get_posts($mjestoOdredista);
+ 
         $post_id = $data['posts']['id'];
         $data['comments'] = $this->comment_model->get_comments($post_id);
 
@@ -48,6 +55,8 @@ class Posts extends CI_Controller{
         $this->load->view('templates/header');
         $this->load->view('posts/view',$data);
         $this->load->view('templates/footer');
+        
+      
     }
 
 
@@ -117,22 +126,21 @@ class Posts extends CI_Controller{
 
 
 
-    public function edit($mjestoOdredista){
+    public function edit($slug){
         if(!$this->session->userdata('logged_in')){
             redirect('users/login');
-
         }
 
-        $data['mjestoOdredista']= $this->Posts_model->get_posts($mjestoOdredista);
+        $data['mjestoOdredista']= $this->Posts_model->get_posts($slug);
 
         //Check if user is logged in
-        if($this->session->userdata('user_id') != $this->Posts_model->get_posts($mjestoOdredista)['user_id']){
+        if($this->session->userdata('user_id') != $this->Posts_model->get_posts($slug)['user_id']){
         	redirect('posts');
         }
             
         $data['categories'] = $this->Posts_model->get_categories();
 
-        if(empty($data['mjestoOdredista'])){
+        if(empty($data['slug'])){
             show_404();
         }
 
