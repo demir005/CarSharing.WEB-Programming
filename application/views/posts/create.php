@@ -6,9 +6,13 @@
 
 <script>
   $( function() {
-    $( "#datepicker" ).datepicker();
-    $( "#datepicker1" ).datepicker();
-  } );
+	    $( "#datepicker" ).datepicker({
+	    	dateFormat: 'yy-dd-mm'
+	    });
+	    $( "#datepicker1" ).datepicker({
+	    	dateFormat: 'yy-dd-mm'
+	    });	
+  });
   </script>
   
 
@@ -48,7 +52,7 @@
 				
 				<div class="form-group">
 			  <label for="select">Broj slobodnih mjesta</label>
-				  <select class="form-control" id="select", name="brojMjesta">
+				  <select class="form-control" id="select" name="brojMjesta">
 				    <option>1</option>
 				    <option>2</option>
 				    <option>3</option>
@@ -58,14 +62,14 @@
 				
 				
 			<div class="form-group">
-			<label for="Kategorije">Kategorija</label>
-			<div>
-			<select name="category_id" class="form_control">
-			<?php foreach($categories as $category):?>
-			<option value="<?php echo $category['id'];?>"><?php echo $category['name'];?></option>
-			<?php endforeach;?>
-			</select>
-			</div>
+			<label for="kategorije">Kategorija</label>
+			 <?php 
+			 echo '<select class="form-control" id="kategorije" name="category_id">';
+			 foreach($categories as $category) :
+			 	echo '<option value="' . $category['id'] . '">' . $category["name"] . '</option>';
+			 endforeach;
+			 echo '</select>';
+			 ?>
 			</div>
 			
 			<div class="form-group">

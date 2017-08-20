@@ -29,10 +29,7 @@ class Posts extends CI_Controller{
         $this->load->view('templates/footer');
         
         
-        //loading post model for fetching all data from database and dispaly in view.php
-        $this->load->model('Posts_model');
-        $data['get_data_from_db'] = $this->Posts_model->get_data_from_db();
-        $this->load->view('posts/view', $data);
+        
     }
 
 
@@ -65,14 +62,14 @@ class Posts extends CI_Controller{
         if(!$this->session->userdata('logged_in')){
             redirect('users/login');
         }
-			
+       	
        $this->form_validation->set_rules('mjestoPolaska', 'Mjesto Polaska', 'required');
        $this->form_validation->set_rules('mjestoOdredista', 'Mjesto Odredista', 'required');
        $this->form_validation->set_rules('datumPolaska', 'Datum Polaska', 'required');
        $this->form_validation->set_rules('datumPovratka', 'Datum Odredista', 'required');
        $this->form_validation->set_rules('cijena', 'Cijena', 'required');
        $this->form_validation->set_rules('brojMjesta', 'Broj mjesta', 'required');
-      // $this->form_validation->set_rules('opis', 'Opis', 'required');
+       $this->form_validation->set_rules('opis', 'Opis', 'required');
       // $this->form_validation->set_rules('post_image', 'Image', 'required');
         
         $data['title'] ='Create Posts';
@@ -127,27 +124,27 @@ class Posts extends CI_Controller{
 
 
     public function edit($slug){
-        if(!$this->session->userdata('logged_in')){
-            redirect('users/login');
-        }
-
-        $data['mjestoOdredista']= $this->Posts_model->get_posts($slug);
-
-        //Check if user is logged in
-        if($this->session->userdata('user_id') != $this->Posts_model->get_posts($slug)['user_id']){
-        	redirect('posts');
-        }
-            
-        $data['categories'] = $this->Posts_model->get_categories();
-
-        if(empty($data['slug'])){
-            show_404();
-        }
-
-        $data['id'] = 'Edit Post';
-        $this->load->view('templates/header');
-        $this->load->view('posts/edit',$data);
-        $this->load->view('templates/footer');
+    	if(!$this->session->userdata('logged_in')){
+    		redirect('users/login');
+    	}
+    	
+    	$data['mjestoOdredista']= $this->Posts_model->get_posts($slug);
+    	
+    	//Check if user is logged in
+    	if($this->session->userdata('user_id') != $this->Posts_model->get_posts($slug)['user_id']){
+    		redirect('posts');
+    	}
+    	
+    	$data['categories'] = $this->Posts_model->get_categories();
+    	
+    	if(empty($data['slug'])){
+    		show_404();
+    	}
+    	
+    	$data['id'] = 'Edit Post';
+    	$this->load->view('templates/header');
+    	$this->load->view('posts/edit',$data);
+    	$this->load->view('templates/footer');
     }
 
 

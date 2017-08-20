@@ -3,9 +3,9 @@
 <h5>Mjesto Polaska: </h5>
     <?php if($posts): ?>
     <div class="well">
-        <h5><?php  echo $posts['mjestoPolaska']; ?>
+      <h5><?php echo $posts['mjestoPolaska']?></h5>
      </div>
-            <?php  else : ?>
+        <?php  else : ?>
  <?php endif;?>
  
  <h5>Mjesto Odredista: </h5>
@@ -97,3 +97,4 @@
 <?php echo form_close(); ?>
 </div>
 </div>
+</hr>

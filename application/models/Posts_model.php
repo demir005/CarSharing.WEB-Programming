@@ -92,10 +92,6 @@ class Posts_Model extends CI_Model{
 		
 	}
 	
-	public function get_data_from_db(){
-	      $query = $this->db->get('posts');
-	      return $query;
-	}
 	
 	
 }
