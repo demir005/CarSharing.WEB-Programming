@@ -37,12 +37,8 @@ class Posts extends CI_Controller{
 
 
         $data['posts'] = $this->Posts_model->get_posts($mjestoOdredista);
- 
         $post_id = $data['posts']['id'];
         $data['comments'] = $this->comment_model->get_comments($post_id);
-
-
-
 
         if(empty($data['posts'])){
             show_404();
@@ -66,16 +62,14 @@ class Posts extends CI_Controller{
        $this->form_validation->set_rules('mjestoPolaska', 'Mjesto Polaska', 'required');
        $this->form_validation->set_rules('mjestoOdredista', 'Mjesto Odredista', 'required');
        $this->form_validation->set_rules('datumPolaska', 'Datum Polaska', 'required');
-       $this->form_validation->set_rules('datumPovratka', 'Datum Odredista', 'required');
+       $this->form_validation->set_rules('datumPovratka', 'Datum Povratka', 'required');
        $this->form_validation->set_rules('cijena', 'Cijena', 'required');
        $this->form_validation->set_rules('brojMjesta', 'Broj mjesta', 'required');
        $this->form_validation->set_rules('opis', 'Opis', 'required');
-      // $this->form_validation->set_rules('post_image', 'Image', 'required');
+       //$this->form_validation->set_rules('post_image', 'Image', 'required');
         
         $data['title'] ='Create Posts';
         $data['categories'] = $this->Posts_model->get_categories();
-
-
 
         if($this->form_validation->run()===FALSE){
 
@@ -89,8 +83,8 @@ class Posts extends CI_Controller{
             $config['upload_path'] = './assets/images/posts';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = '2048';
-            $config['max_width'] = '500';
-            $config['max_height'] = '500';
+            $config['max_width'] = '100';
+            $config['max_height'] = '100';
 
             $this->load->library('upload');
             
@@ -123,25 +117,25 @@ class Posts extends CI_Controller{
 
 
 
-    public function edit($slug){
+    public function edit($mjestoOdredista){
     	if(!$this->session->userdata('logged_in')){
     		redirect('users/login');
     	}
     	
-    	$data['mjestoOdredista']= $this->Posts_model->get_posts($slug);
+    	$data['posts']= $this->Posts_model->get_posts($mjestoOdredista);
     	
     	//Check if user is logged in
-    	if($this->session->userdata('user_id') != $this->Posts_model->get_posts($slug)['user_id']){
+    	if($this->session->userdata('user_id') != $this->Posts_model->get_posts($mjestoOdredista)['user_id']){
     		redirect('posts');
     	}
     	
     	$data['categories'] = $this->Posts_model->get_categories();
     	
-    	if(empty($data['slug'])){
+    	if(empty($data['posts'])){
     		show_404();
     	}
     	
-    	$data['id'] = 'Edit Post';
+    	$data['title'] = 'Edit Post';
     	$this->load->view('templates/header');
     	$this->load->view('posts/edit',$data);
     	$this->load->view('templates/footer');

@@ -6,17 +6,21 @@
 
 <script>
   $( function() {
-	    $( "#datepicker" ).datepicker({
-	    	dateFormat: 'yy-dd-mm'
+	    $("#datepicker").datepicker({
+	    	dateFormat: 'dd-mm-yy'
 	    });
-	    $( "#datepicker1" ).datepicker({
-	    	dateFormat: 'yy-dd-mm'
+	    $("#datepicker1").datepicker({
+	    	dateFormat: 'dd-mm-yy'
 	    });	
   });
   </script>
+
+
+
+
   
 
-<?php echo form_open_multipart('posts/create');?>
+<?php echo form_open_multipart('posts/create/');?>
 <?php echo validation_errors();?>
 
 	<div class="row">
@@ -35,12 +39,12 @@
 				
 				<div class="form-group">
 					<label>Datum Polaska</label>
-					 <input type="text" id="datepicker" class="form-control" name="datumPolaska" placeholder ="Datum Polaska" >
+					 <input type="date" id="datepicker" class="form-control" name="datumPolaska" placeholder ="Datum Polaska" >
 				</div>
 				
 				<div class="form-group">
 					<label>Datum Povratka</label>
-					 <input type="text" id="datepicker1" class="form-control" name="datumPovratka" placeholder="Datum Povratka">
+					 <input type="date" id="datepicker1" class="form-control" name="datumPovratka" placeholder="Datum Povratka">
 				</div>
 				
 				

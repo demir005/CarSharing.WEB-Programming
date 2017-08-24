@@ -26,7 +26,7 @@
         <?php if($this->session->userdata('logged_in')):?>
         <li class="active"><a href="<?php echo base_url()?>">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="<?php echo base_url();?>posts/create">Postavi Oglas</a></li>
-         <li><a href="<?php echo base_url();?>categories/create">Postavi Kategoriju</a></li>
+        <li><a href="<?php echo base_url();?>categories/create">Postavi Kategoriju</a></li>
         <li><a href="<?php echo base_url();?>categories">Kategorije</a></li>
         <li><a href="<?php echo base_url();?>posts/index">Sve voznje</a></li>
  		<li><a href="<?php echo base_url();?>about">O nama</a></li>

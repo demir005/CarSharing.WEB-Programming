@@ -51,14 +51,13 @@
 
 <div class="post-body">
     <hr>
-    <?php if ($this->session->userdata('user_id') == $posts['user_id']): ?>
-        <?= form_open('/posts/delete/' . $posts['id']) ?>
-        <a class="btn btn-default" href='posts/edit'<?= $posts['id'] ?>">Edit</a>
-        <input type="submit" value="Delete" class="btn btn-danger">
-        
-        <?php echo form_close();  ?>
-    <?php endif ?>
-</div>
+    <?php if($this->session->userdata('user_id') == $posts['user_id']): ?>
+	<hr>
+	<a class="btn btn-default pull-left" href="<?php echo base_url(); ?>posts/edit/<?php echo $posts['mjestoOdredista']; ?>">Edit</a>
+	<?php echo form_open('/posts/delete/'.$posts['id']); ?>
+		<input type="submit" value="Delete" class="btn btn-danger">
+	</form>
+<?php endif; ?>
 
 <hr>
 <h3>Comments</h3>
