@@ -5,20 +5,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-  $( function() {
-	    $("#datepicker").datepicker({
-	    	dateFormat: 'dd-mm-yy'
-	    });
-	    $("#datepicker1").datepicker({
-	    	dateFormat: 'dd-mm-yy'
-	    });	
-  });
+  
   </script>
 
-
-
-
-  
 
 <?php echo form_open_multipart('posts/create/');?>
 <?php echo validation_errors();?>
@@ -39,12 +28,12 @@
 				
 				<div class="form-group">
 					<label>Datum Polaska</label>
-					 <input type="date" id="datepicker" class="form-control" name="datumPolaska" placeholder ="Datum Polaska" >
+					 <input type="date" id="datepicker" min=<?php echo date('Y-m-d');?> class="form-control" name="datumPolaska" placeholder ="Datum Polaska" >
 				</div>
 				
 				<div class="form-group">
 					<label>Datum Povratka</label>
-					 <input type="date" id="datepicker1" class="form-control" name="datumPovratka" placeholder="Datum Povratka">
+					 <input type="date" id="datepicker1" min=<?php echo date('Y-m-d');?> class="form-control" name="datumPovratka" placeholder="Datum Povratka">
 				</div>
 				
 				
@@ -76,9 +65,21 @@
 			 ?>
 			</div>
 			
+			<script>
+			$(function(){
+				  $('#kategorije').on('change', function(){
+				    var selected = $(this).find('option:selected').text();
+				    if (selected == 'Ponuda') {
+				      $('input[name=userfile]').parent().show();
+				    } else {
+				      $('input[name=userfile]').parent().hide();
+				    }
+				  });
+				});
+			</script>
+			
 			<div class="form-group">
 			 <label>Postavi sliku:</label>
-			 <p><b>samo oni koji nude prevoz nek postave sliku svojeg vozila</b></p>
 			 <input type="file" name="userfile" size="20">
 			 </div>
 			 

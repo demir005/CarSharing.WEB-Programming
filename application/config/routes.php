@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-
+$route['pages/about']= 'pages/about';
 
 $route['posts/update']= 'posts/update';
 $route['posts/index'] = 'posts/index';

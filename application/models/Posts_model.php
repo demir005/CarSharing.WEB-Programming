@@ -58,11 +58,9 @@ class Posts_Model extends CI_Model{
 	public function update_post(){
 		$mjestoOdredista = url_title($this->input->post('title'));
 		$data=array(
-				 'id' => $this->input->post('id'),
-				'user_id'=> $this->input->post('user_id'),
-				'category_id'=>      $this->input->post('category_id'),
+				'category_id' => $this->input->post('category_id'),
 				'mjestoPolaska' =>   $this->input->post('mjestoPolaska'),
-				'mjestoOdredista' => $mjestoOdredista,
+				'mjestoOdredista' => $this->input->post('mjestoOdredista'),
 				'datumPolaska' =>    $this->input ->post('datumPolaska'),
 				'datumPovratka' =>   $this->input ->post('datumPovratka'),
 				'cijena' =>          $this->input ->post('cijena'),

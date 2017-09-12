@@ -17,14 +17,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Car Sharing</a>
+      <a class="navbar-brand" href="<?php echo base_url();?>pages/view">Car Sharing</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         
         <?php if($this->session->userdata('logged_in')):?>
-        <li class="active"><a href="<?php echo base_url()?>">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="<?php echo base_url();?>posts/create">Postavi Oglas</a></li>
         <li><a href="<?php echo base_url();?>categories/create">Postavi Kategoriju</a></li>
         <li><a href="<?php echo base_url();?>categories">Kategorije</a></li>

@@ -53,54 +53,74 @@ class Posts extends CI_Controller{
     }
 
 
-    public function create(){
-        //check if user is logged in
-        if(!$this->session->userdata('logged_in')){
-            redirect('users/login');
-        }
-       	
-       $this->form_validation->set_rules('mjestoPolaska', 'Mjesto Polaska', 'required');
-       $this->form_validation->set_rules('mjestoOdredista', 'Mjesto Odredista', 'required');
-       $this->form_validation->set_rules('datumPolaska', 'Datum Polaska', 'required');
-       $this->form_validation->set_rules('datumPovratka', 'Datum Povratka', 'required');
-       $this->form_validation->set_rules('cijena', 'Cijena', 'required');
-       $this->form_validation->set_rules('brojMjesta', 'Broj mjesta', 'required');
-       $this->form_validation->set_rules('opis', 'Opis', 'required');
-       //$this->form_validation->set_rules('post_image', 'Image', 'required');
-        
-        $data['title'] ='Create Posts';
-        $data['categories'] = $this->Posts_model->get_categories();
-
-        if($this->form_validation->run()===FALSE){
-
-            $this->load->view('templates/header');
-            $this->load->view('posts/create',$data);
-            $this->load->view('templates/footer');
-
-        }else {
-
-            //upload image
-            $config['upload_path'] = './assets/images/posts';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2048';
-            $config['max_width'] = '100';
-            $config['max_height'] = '100';
-
-            $this->load->library('upload');
-            
-
-            if(!$this->upload->do_upload()){
-                $error=array('error'=>$this->upload->display_errors());
-                $post_image='noimage.jpg';
-            }else{
-                $data = array('upload_data'=>$this->upload->data());
-                $post_image = $_FILES['userfile']['name'];
-            }
-            $this->Posts_model->create_post($post_image);
-            $this->session->set_flashdata('post_creted', 'You post has been created') ;
-            redirect('posts');
-        }
-
+    public function create()
+    {
+    	//check if user is logged in
+    	if (!$this->session->userdata('logged_in')) {
+    		redirect('users/login');
+    	}
+    	
+    	$this->form_validation->set_rules('mjestoPolaska', 'Mjesto Polaska', 'required');
+    	$this->form_validation->set_rules('mjestoOdredista', 'Mjesto Odredista', 'required');
+    	$this->form_validation->set_rules('datumPolaska', 'Datum Polaska', 'required');
+    	$this->form_validation->set_rules('datumPovratka', 'Datum Povratka', 'required');
+    	$this->form_validation->set_rules('cijena', 'Cijena', 'required');
+    	$this->form_validation->set_rules('brojMjesta', 'Broj mjesta', 'required');
+    	$this->form_validation->set_rules('opis', 'Opis', 'required');
+    	
+    	
+    	$data['title'] = 'Create Posts';
+    	$data['categories'] = $this->Posts_model->get_categories();
+    	
+    	if ($this->form_validation->run() === FALSE) {
+    		
+    		$this->session->set_flashdata("error", validation_errors());
+    		$this->load->view('templates/header');
+    		$this->load->view('posts/create', $data);
+    		$this->load->view('templates/footer');
+    	} else {
+    		
+    	 
+    		
+    		$path = 'assets/images/posts/';
+    		$post_image = $this->ImageUpload($path, 'userfile', '');
+    		if (!is_array($post_image)) {
+    			
+    			$this->session->set_flashdata('error', $post_image);
+    			redirect(site_url() . 'posts/create');
+    		}
+    		$post_image = $post_image['file_name'];
+    		
+    		$this->Posts_model->create_post($post_image);
+    		$this->session->set_flashdata('post_creted', 'You post has been created');
+    		redirect('posts');
+    	}
+    }
+    
+    public function ImageUpload($upload_path, $uploading_file_name, $file_name = '') {
+    	
+    	$obj = &get_instance();
+    	$obj->load->library('upload');
+    	
+    	$file_name = 'image_' . time() . $file_name . "." . pathinfo($_FILES[$uploading_file_name]['name'], PATHINFO_EXTENSION);
+    	$full_path = FCPATH . $upload_path;
+        $full_path = $upload_path;
+    	
+    	
+    	$config['upload_path'] = $full_path;
+    	$config['allowed_types'] = 'gif|jpg|png|jpeg|GIF|JPG|PNG|JPEG';
+    	$config['max_size'] = 2048;
+    	$config['max_width'] = 2048;
+    	$config['max_height'] = 2048;
+    	$config['file_name'] = $file_name;
+    	
+    	$obj->upload->initialize($config);
+    	
+    	if (!$obj->upload->do_upload($uploading_file_name)) {
+    		return $obj->upload->display_errors();
+    	} else {
+    		return $obj->upload->data();
+    	}
     }
 
     public function delete($id){
